@@ -6,9 +6,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by sayed on 7/14/2017.
- */
 @Entity
 public class Doctor implements Serializable {
     @Id

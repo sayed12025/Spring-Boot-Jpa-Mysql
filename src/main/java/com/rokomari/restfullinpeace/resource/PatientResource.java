@@ -12,14 +12,26 @@ import java.util.List;
 public class PatientResource {
     @Autowired
     PatientRepository patientRepository;
-    @GetMapping(value ="/allPatients")
-    public List<Patient> getAll(){
+
+    @GetMapping(value = "/allPatients")
+    public List<Patient> getAll() {
         return patientRepository.findAll();
     }
 
     @PostMapping(value = "/loadPatients")
-    public List<Patient> persist(@RequestBody final Patient patient){
+    public List<Patient> persist(@RequestBody final Patient patient) {
         patientRepository.save(patient);
         return patientRepository.findAll();
     }
+
+    @PutMapping("/updatePatient")
+    public Patient update(@RequestBody Patient patient, @PathVariable Integer id) {
+        return patientRepository.save(patient);
+    }
+
+    @DeleteMapping("/deletePatient")
+    public void delete(@PathVariable Integer id) {
+        patientRepository.delete(id);
+    }
+
 }

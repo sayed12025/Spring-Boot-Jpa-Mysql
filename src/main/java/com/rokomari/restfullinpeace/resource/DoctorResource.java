@@ -30,6 +30,16 @@ public class DoctorResource {
         return doctorRepository.findAll();
     }
 
+    @PutMapping("/updateDoctor")
+    public Doctor update(@RequestBody Doctor doctor, @PathVariable Integer id) {
+        return doctorRepository.save(doctor);
+    }
+
+    @DeleteMapping("/deleteDoctor")
+    public void delete(@PathVariable Integer id) {
+        patientRepository.delete(id);
+    }
+
     @PostMapping("/create")
     public Doctor createDoctor(@RequestBody Doctor doctor) {
         doctorRepository.save(doctor);
@@ -37,7 +47,7 @@ public class DoctorResource {
     }
 
     @PostMapping("/setPatients")
-    public Doctor setPatien2ts(@RequestBody DoctorPatients doctorPatients) {
+    public Doctor setPatients(@RequestBody DoctorPatients doctorPatients) {
         Doctor doctor =  doctorRepository.getOne(doctorPatients.getDoctorId());
         List<Patient> patients = new ArrayList<>();
         for (Integer patientId : doctorPatients.getPatientIds()) {
